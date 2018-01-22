@@ -54,6 +54,7 @@
     </div>
     <food :food="selectedFood"
       ref="food"
+      @cart-add="_drop"
     ></food>
   </div>
 </template>

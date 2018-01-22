@@ -3,12 +3,12 @@
     <transition name="move">
       <div class="cart-decrease"
         v-show="food.count>0"
-        @click="decreaseCart">
+        @click.stop="decreaseCart">
         <span class="inner icon-remove_circle_outline"></span>
       </div>
     </transition>
     <div class="cart-count" v-show="food.count>0">{{food.count}}</div>
-    <div class="cart-add icon-add_circle" @click="addCart"></div>
+    <div class="cart-add icon-add_circle" @click.stop="addCart"></div>
   </div>
 </template>
 
@@ -31,7 +31,7 @@ export default {
       } else {
         this.food.count++;
       }
-      this.$emit('cart-add', event.target);      // “添加数量组件”触发自定义事件，传入元素（位置）
+      this.$emit('cart-add', event.target);      // “添加数量组件”触发自定义事件，传入元素（位置）;cart-add事件为：直接父组件(goods,或food(二级父组件)，..)的cart-add事件
     },
     decreaseCart() {
       if (!event._constructed) {
